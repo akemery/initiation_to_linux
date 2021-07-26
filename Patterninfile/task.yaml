@@ -1,0 +1,47 @@
+accessible: false
+author: ''
+categories: []
+contact_url: ''
+context: |-
+    .. raw:: html
+
+          <script>
+              let index1 = parseInt(input["@random"][0]*100)%7;
+              let index2 = parseInt(input["@random"][1]*100)%7;
+              let index3 = parseInt(input["@random"][2]*100)%7;
+
+              let softs = ["software","Software","sOftware", "soFtware" ,"sofTware" , "softWare" , "softwAre"]
+              let paterns = ["break","alarm","strcmp", "memcpy" ,"atoi" , "strsignal" , "pipe"]
+              let files = ["answer.out","Answer.out","aNswer.out", "anSwer.out" ,"ansWer.out" , "ansWer.out" , "answEr.out"]
+              let soft = softs[index1]
+              let patern = paterns[index2]
+              let file = files[index3]
+              document.write("Give the number of files in the directory ") ;
+              document.write(soft);
+              document.write("  which contain the patern:  ");
+              document.write(patern);
+              document.write("  and redirect the answer in the file student/");
+              document.write(file);
+          </script>
+environment_id: cpp
+environment_parameters:
+    limits:
+        time: '60'
+        hard_time: ''
+        memory: '100'
+    network_grading: 'on'
+    run_cmd: ''
+environment_type: docker
+evaluate: best
+file: ''
+groups: false
+input_random: '3'
+name: Patern in files
+network_grading: false
+problems: {}
+regenerate_input_random: 'on'
+stored_submissions: 0
+submission_limit:
+    amount: -1
+    period: -1
+weight: 1.0

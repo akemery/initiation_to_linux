@@ -1,0 +1,39 @@
+accessible: false
+author: ''
+categories: []
+contact_url: ''
+context: |-
+    .. raw:: html
+
+          <script>
+              let index = parseInt(input["@random"][0]*100 )%7;
+              let number = parseInt(input["@random"][1]*1000000 );
+              let dirs = ["numbers" , "Numbers" , "nUmbers" , "nuMbers", "numBers" , "numbErs", "numbeRs"]
+              let dir = dirs[index]
+              document.write("In this exercise you will delete the file in the directory: \" student/") ;
+              document.write(dir);
+              document.write(" \" which last line contains the random number: ");
+              document.write(number);
+          </script>
+environment_id: cpp
+environment_parameters:
+    limits:
+        time: '30'
+        hard_time: ''
+        memory: '100'
+    network_grading: 'on'
+    run_cmd: ''
+environment_type: docker
+evaluate: best
+file: ''
+groups: false
+input_random: '3'
+name: tail usage
+network_grading: false
+problems: {}
+regenerate_input_random: 'on'
+stored_submissions: 0
+submission_limit:
+    amount: -1
+    period: -1
+weight: 1.0

@@ -1,0 +1,17 @@
+#!/bin/bash
+ssh_student
+random_input=`getinput @random`
+set -- $random_input
+# Get the random value and convert it to index in files data set
+rand=`echo "$1" | grep -Eo '[+-]?[0-9]+([.][0-9]+)?'`
+index=`bc <<< "scale=0; (($rand)*100)%7" | awk '{printf("%d\n",$1)}' `
+files=("hello.txt" "Hello.txt" "hell0.txt" "HEllo.txt" "hEllo.txt" "heLlo.txt" "heLLo.txt")
+file=${files[$index]}
+
+# check if the file is really created
+if [ -f /task/student/$file ]; then
+	feedback-result success
+else
+	feedback-result failed
+    feedback-msg  -m "You have to create the file $file"
+fi

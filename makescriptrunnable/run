@@ -1,0 +1,25 @@
+#!/bin/bash
+
+random_input=`getinput @random`
+set -- $random_input
+# Get the random value and convert it to index in files data set
+rand=`echo "$1" | grep -Eo '[0-9]+([.][0-9]+)?'`
+index=`bc <<< "scale=0; (($rand)*100)%7" | awk '{printf("%d\n",$1)}' `
+
+files=("script.sh" "Script.sh" "sCript.sh" "scRipt.sh" "scrIpt.sh"  "scriPt.sh"  "scripT.sh")
+
+file=${files[$index]}
+
+ssh_student --setup-script "bash /task/student/start.sh /task/student/$file"
+
+student_header=`head -n 1 /task/student/"$file"`
+student_uright=`ls -al /task/student/"$file" | awk '{printf("%s\n"), $1}' | cut -dx -f1`
+solution_header="#!/bin/bash"
+solution_uright="-rw"
+
+if [ "$student_header" = "$solution_header" ] && [ "$student_uright"  = "$solution_uright" ]; then
+	feedback-result success
+else
+	feedback-result failed
+    feedback-msg  -m "$student_header $student_uright $solution_header $solution_uright"
+fi 

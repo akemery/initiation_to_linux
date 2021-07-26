@@ -1,0 +1,37 @@
+accessible: false
+author: ''
+categories: []
+contact_url: ''
+context: |-
+    .. raw:: html
+
+          <script>
+              let index = parseInt(input["@random"][0]*100)%7;
+              let files = ["script.sh","Script.sh","sCript.sh", "scRipt.sh" ,"scrIpt.sh" , "scriPt.sh" , "scripT.sh"]
+              let file = files[index]
+              document.write("Make the script student/") ;
+              document.write(file);
+              document.write("  runnable  ");
+          </script>
+environment_id: cpp
+environment_parameters:
+    limits:
+        time: '30'
+        hard_time: ''
+        memory: '100'
+    network_grading: 'on'
+    run_cmd: ''
+environment_type: docker
+evaluate: best
+file: ''
+groups: false
+input_random: '1'
+name: Make script runnable
+network_grading: false
+problems: {}
+regenerate_input_random: 'on'
+stored_submissions: 0
+submission_limit:
+    amount: -1
+    period: -1
+weight: 1.0

@@ -1,0 +1,43 @@
+accessible: false
+author: ''
+categories: []
+contact_url: ''
+context: |-
+    .. raw:: html
+
+          <script>
+              let index1 = parseInt(input["@random"][0]*100 )%3;
+              let index2 = parseInt(input["@random"][1]*100 )%3;
+              let files = ["come.doc", "agoue.avi", "lokossa.doc"]
+              let outputs = ["results.out", "Results.Out", "rEsults.out" ]
+              let file = files[index1]
+              let output = outputs[index2]
+              document.write("In this exercice your have to find the file : \" ") ;
+              document.write(file);
+              document.write(" \" in the directory: student");
+              document.write("<br>");
+              document.write("and redirect the result to the file:");
+              document.write(output)
+          </script>
+environment_id: default
+environment_parameters:
+    limits:
+        time: '30'
+        hard_time: ''
+        memory: '100'
+    network_grading: 'on'
+    run_cmd: ''
+environment_type: docker
+evaluate: best
+file: ''
+groups: false
+input_random: '2'
+name: Find a file
+network_grading: false
+problems: {}
+regenerate_input_random: 'on'
+stored_submissions: 0
+submission_limit:
+    amount: -1
+    period: -1
+weight: 1.0

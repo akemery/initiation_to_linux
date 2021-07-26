@@ -1,0 +1,38 @@
+accessible: false
+author: ''
+categories: []
+contact_url: ''
+context: |-
+    .. raw:: html
+
+          <script>
+              let a = parseInt(input["@random"][0]*100 );
+              let index = (a%7);
+              let values = ["hello.txt","Hello.txt","hell0.txt", "HEllo.txt" ,"hEllo.txt" , "heLlo.txt" , "heLLo.txt"]
+              let value = values[index]
+              document.write("In this exercice you have to create the file ") ;
+              document.write(value);
+              document.write(" in the student directory ");
+          </script>
+environment_id: default
+environment_parameters:
+    limits:
+        time: '30'
+        hard_time: ''
+        memory: '100'
+    network_grading: 'on'
+    run_cmd: ''
+environment_type: docker
+evaluate: best
+file: ''
+groups: false
+input_random: '1'
+name: Create a file
+network_grading: false
+problems: {}
+regenerate_input_random: 'on'
+stored_submissions: 0
+submission_limit:
+    amount: -1
+    period: -1
+weight: 1.0

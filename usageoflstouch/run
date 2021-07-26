@@ -1,0 +1,16 @@
+#!/bin/bash
+ssh_student --setup-script "/bin/bash /task/student/fs/start.sh" --teardown-script "/bin/bash history -w"
+
+
+if [ -f /task/student/.ssh_logs ]; then
+	logs=$(grep "worker@" /task/student/.ssh_logs | cut -d'$' -f2 | )
+    answer=$(grep "ls -lt | head -n 2" $logs)
+fi
+
+if [ "$answer" = ""]; then
+    feedback-msg -em "You used the wrong commands : $logs !"
+	feedback-result failed
+else
+	feedback-msg -em "Congratulation you use the right command: $answer"
+	feedback-result success
+fi

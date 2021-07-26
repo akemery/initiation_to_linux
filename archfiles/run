@@ -1,0 +1,29 @@
+#!/bin/bash
+
+random_input=`getinput @random`
+set -- $random_input
+# Get the random value and convert it to index in files data set
+rand1=`echo "$1" | grep -Eo '[+-]?[0-9]+([.][0-9]+)?'`
+rand2=`echo "$2" | grep -Eo '[+-]?[0-9]+([.][0-9]+)?'`
+index1=`bc <<< "scale=0; (($rand1)*100)%7" | awk '{printf("%d\n",$1)}' `
+index2=`bc <<< "scale=0; (($rand2)*100)%7" | awk '{printf("%d\n",$1)}' `
+
+archs=("object.tar" "Object.tar" "objecT.tar" "objEct.tar"  "oBJect.tar"  "objeCT.tar"   "OBJect.tar")
+
+softs=("software" "Software" "sOftware"  "soFtware"  "sofTware"  "softWare"  "softwAre")
+
+arch=${archs[$index1]}
+soft=${softs[$index2]}
+
+ssh_student --setup-script "bash /task/student/start.sh /task/student/$soft"
+
+solution=`ls -al /task/student/"$soft"/*.o`
+cd /task/student/$soft && make clean && tar -xf "$arch"
+student=`ls -al /task/student/"$soft"/*.o`
+
+if [ "$student" = "$solution" ]; then
+	feedback-result success
+else
+	feedback-result failed
+    feedback-msg  -m "content of the $student and $solution"
+fi 

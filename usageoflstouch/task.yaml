@@ -1,0 +1,28 @@
+accessible: false
+author: ''
+categories: []
+contact_url: ''
+context: This exercise provides a filesystem with some files you have to  update the
+    oldest file with the touch command
+environment_id: cpp
+environment_parameters:
+    limits:
+        time: '100'
+        hard_time: ''
+        memory: '100'
+    network_grading: 'on'
+    run_cmd: ''
+environment_type: docker
+evaluate: best
+file: ''
+groups: false
+input_random: '0'
+name: Usage of ls and touch
+network_grading: false
+problems: {}
+regenerate_input_random: 'on'
+stored_submissions: 0
+submission_limit:
+    amount: -1
+    period: -1
+weight: 1.0

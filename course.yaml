@@ -1,0 +1,39 @@
+accessible: false
+name: Initiation à Linux
+description: ''
+admins: []
+tutors: []
+groups_student_choice: false
+allow_unregister: true
+allow_preview: false
+registration: true
+registration_password: null
+registration_ac: null
+registration_ac_list:
+- '  '
+is_lti: false
+lti_url: ''
+lti_keys: {}
+lti_send_back_grade: false
+task_dispenser: toc
+dispenser_data:
+-   config:
+        closed: false
+    id: tasks-list
+    rank: 0
+    tasks_list:
+        Minimumincsv: 7
+        Patterninfile: 5
+        appendtofile: 2
+        archfiles: 4
+        catusage: 10
+        cdusage: 11
+        createdir: 1
+        createfile: 0
+        findfile: 3
+        makescriptrunnable: 6
+        maximumincsvfile: 8
+        renamefiles: 13
+        tailusage: 12
+        usageoflstouch: 9
+    title: List of exercises

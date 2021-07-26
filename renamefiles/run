@@ -1,0 +1,23 @@
+#!/bin/bash
+
+random_input=$(getinput @random)
+set -- $random_input
+# Get the random value and convert it to index in files data set
+rand=`echo "$1" | grep -Eo '[0-9]+([.][0-9]+)?'`
+index=$(bc <<< "scale=0; (($rand)*100)%7" | awk '{printf("%d\n",$1)}' )
+dirs=("src"  "Src"  "sRc"  "srC"  "SRc"  "sRC" "SrC")
+dir_=${dirs[$index]}
+
+
+ssh_student --setup-script "python3 student/start.py $dir_ "
+
+solution1=$(find student/"$dir_" -iregex ".*/*[.]c")
+solution2=$(find . -iregex ".*/*[.]back" -exec ls -al {} \; | wc -l)
+if [  "$solution1" = ""  ] && [ solution2 -eq cfiles ]; then
+	feedback-msg  -m "Congratulation, you were able to rename all C files $solution2"
+	feedback-result success
+else
+	feedback-msg  -m "You do not rename all C files $solution1 $solution2 $cfiles"
+	feedback-result failed
+fi
+# find . -iregex ".*/*[.]c" -exec sh -c 'x="{}"; mv "$x" "${x}.back"' \;

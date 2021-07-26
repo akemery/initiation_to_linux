@@ -1,0 +1,24 @@
+#!/bin/bash
+
+random_input=$(getinput @random)
+set -- $random_input
+# Get the random value and convert it to index in files data set
+rand1=`echo "$1" | grep -Eo '[0-9]+([.][0-9]+)?'`
+rand2=`echo "$2" | grep -Eo '[0-9]+([.][0-9]+)?'`
+rand3=`echo "$3" | grep -Eo '[0-9]+([.][0-9]+)?'`
+index=$(bc <<< "scale=0; (($rand1)*100)%7" | awk '{printf("%d\n",$1)}' )
+number=$(bc <<< "scale=0; (($rand2)*1000000)" | awk '{printf("%d\n",$1)}' )
+random_choice=$(bc <<< "scale=0; (($rand3)*100)" | awk '{printf("%d\n",$1)}' )
+dirs=("numbers"  "Numbers"  "nUmbers"  "nuMbers"  "numBers"  "numbErs" "numbeRs")
+dir_=${dirs[$index]}
+
+ssh_student --setup-script "python3 student/start.py $dir_ $number $random_choice"
+
+secret=$(cat /task/student/secret) 
+if [  -f "$secret"  ]; then
+	feedback-msg  -m "You do not remove $secret it conatains `` cat $secret ``"
+	feedback-result failed
+else
+	feedback-msg  -m "Congratulation, you were able to remove $secret"
+	feedback-result success
+fi

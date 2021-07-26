@@ -1,0 +1,24 @@
+#!/bin/bash
+
+random_input=$(getinput @random)
+set -- $random_input
+# Get the random value and convert it to index in files data set
+rand1=`echo "$1" | grep -Eo '[+-]?[0-9]+([.][0-9]+)?'`
+rand2=`echo "$2" | grep -Eo '[+-]?[0-9]+([.][0-9]+)?'`
+index1=$(bc <<< "scale=0; (($rand1)*100)%7" | awk '{printf("%d\n",$1)}' )
+index2=$(bc <<< "scale=0; (($rand2)*100)%4" | awk '{printf("%d\n",$1)}' )
+files=("hello.txt" "Hello.txt" "hell0.txt" "HEllo.txt" "hEllo.txt" "heLlo.txt" "heLLo.txt")
+msgs=("Bonjour Monsieur" "Comment allez vous?" "Je viens vous rendre visite" "Linux est super")
+file=${files[$index1]}
+msg=${msgs[$index2]}
+
+ssh_student --setup-script "python3 student/start.py /task/student/$file"
+
+# get the last line of file
+lastline=$(tail -n 1 /task/student/"$file")
+if [ "$msg" = "$lastline" ]; then
+	feedback-result success
+else
+	feedback-result failed
+    feedback-msg  -m "You have to append the $msg in $file but $lastline $rand1 $rand2 $index1 $index2 $1 $2"
+fi 

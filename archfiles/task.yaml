@@ -1,0 +1,41 @@
+accessible: false
+author: ''
+categories: []
+contact_url: ''
+context: |-
+    .. raw:: html
+
+          <script>
+              let index1 = parseInt(input["@random"][0]*100)%7;
+              let index2 = parseInt(input["@random"][1]*100)%7;
+              let archs = ["object.tar","Object.tar","objecT.tar", "objEct.tar" ,"oBJect.tar" , "objeCT.tar" , "OBJect.tar"]
+              let softs = ["software","Software","sOftware", "soFtware" ,"sofTware" , "softWare" , "softwAre"]
+              let arch = archs[index1]
+              let soft = softs[index2]
+              document.write("Archive all object files in the diretory student/") ;
+              document.write(soft);
+              document.write(" as  ");
+              document.write(arch);
+          </script>
+environment_id: cpp
+environment_parameters:
+    limits:
+        time: '30'
+        hard_time: ''
+        memory: '100'
+    network_grading: 'on'
+    run_cmd: ''
+environment_type: docker
+evaluate: best
+file: ''
+groups: false
+input_random: '2'
+name: Archive files
+network_grading: false
+problems: {}
+regenerate_input_random: 'on'
+stored_submissions: 0
+submission_limit:
+    amount: -1
+    period: -1
+weight: 1.0
